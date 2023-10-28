@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cloning Laravel Project</title>
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <!-- FontAwesome CSS for the copy icon -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <style>
+        body {
+            background-color: #333;
+            color: #fff;
+        }
+
+        .code-box {
+            background-color: #6c757d;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            padding: 8px;
+            font-size: 14px;
+        }
+
+        .code-box code {
+            color: #fff;
+        }
+
+        .copy-button {
+            cursor: pointer;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container mt-4">
+        <div class="card bg-dark text-white">
+            <div class="card-header">
+                <h1 class="mb-0">Cloning Laravel Project from GitHub</h1>
+            </div>
+            <div class="card-body">
+                <p class="card-text">Follow these steps to clone and set up a Laravel project from this repository:</p>
+                <ol>
+                    <li class="mb-4">Clone the repository:
+                        <div class="code-box" style="position: relative;">
+                            <pre><code id="clone-command">git clone &lt;GitHub Repository URL&gt;</code></pre>
+                            <button class="btn btn-sm btn-outline-warning copy-button"
+                                onclick="copyToClipboard('clone-command')"
+                                style="position: absolute; top: 0; right: 0;">
+                                <i class="far fa-copy"></i>
+                            </button>
+                        </div>
+                    </li>
+                    <li class="mb-4">Navigate to the cloned repository using your Command Prompt (CMD) or Terminal:
+                        <div class="code-box" style="position: relative;">
+                            <pre><code id="navigate-command">cd &lt;Cloned project name&gt;</code></pre>
+                            <button class="btn btn-sm btn-outline-warning copy-button"
+                                onclick="copyToClipboard('navigate-command')"
+                                style="position: absolute; top: 0; right: 0;">
+                                <i class="far fa-copy"></i>
+                            </button>
+                        </div>
+                    </li>
+                    <li class="mb-4">Install project dependencies using Composer:
+                        <div class="code-box" style="position: relative;">
+                            <pre><code id="composer-install-command">composer install</code></pre>
+                            <button class="btn btn-sm btn-outline-warning copy-button"
+                                onclick="copyToClipboard('composer-install-command')"
+                                style="position: absolute; top: 0; right: 0;">
+                                <i class="far fa-copy"></i>
+                            </button>
+                        </div>
+                    </li>
+                    <li class="mb-4">If you encounter any errors, they may be due to obsolete or deprecated packages.
+                        Run this
+                        command to update the dependencies:
+                        <div class="code-box" style="position: relative;">
+                            <pre><code id="composer-update-command">composer update</code></pre>
+                            <button class="btn btn-sm btn-outline-warning copy-button"
+                                onclick="copyToClipboard('composer-update-command')"
+                                style="position: absolute; top: 0; right: 0;">
+                                <i class="far fa-copy"></i>
+                            </button>
+                        </div>
+                    </li>
+                    <li class="mb-4">Copy the example environment file:
+                        <div class="code-box" style="position: relative;">
+                            <pre><code id="copy-env-command">cp .env.example .env</code></pre>
+                            <button class="btn btn-sm btn-outline-warning copy-button"
+                                onclick="copyToClipboard('copy-env-command')"
+                                style="position: absolute; top: 0; right: 0;">
+                                <i class="far fa-copy"></i>
+                            </button>
+                        </div>
+                    </li>
+                    <li class="mb-4">If you encounter an error with the 'cp' command, you can use this command instead:
+                        <div class="code-box" style="position: relative;">
+                            <pre><code id="copy-env-command-alt">copy .env.example .env</code></pre>
+                            <button class="btn btn-sm btn-outline-warning copy-button"
+                                onclick="copyToClipboard('copy-env-command-alt')"
+                                style="position: absolute; top: 0; right: 0;">
+                                <i class="far fa-copy"></i>
+                            </button>
+                        </div>
+                    </li>
+                    <li class="mb-4">Open your .env file and adjust the database name (DB_DATABASE), username
+                        (DB_USERNAME), and
+                        password (DB_PASSWORD) to match your database configuration:
+                        <div class="code-box" style="position: relative;">
+                            <pre><code id="env-configuration">
+                            DB_CONNECTION=#####
+                            DB_HOST=###.#.#.#
+                            DB_PORT=####
+                            DB_DATABASE=YourDatabaseName
+                            DB_USERNAME=YourUsername
+                            DB_PASSWORD=YourPassword
+                            </code></pre>
+                            <button class="btn btn-sm btn-outline-warning copy-button"
+                                onclick="copyToClipboard('env-configuration')"
+                                style="position: absolute; top: 0; right: 0;">
+                                <i class="far fa-copy"></i>
+                            </button>
+                        </div>
+                    </li>
+                    <li class="mb-4">Generate an application key:
+                        <div class="code-box" style="position: relative;">
+                            <pre><code id="key-generation-command">php artisan key:generate</code></pre>
+                            <button class="btn btn-sm btn-outline-warning copy-button"
+                                onclick="copyToClipboard('key-generation-command')"
+                                style="position: absolute; top: 0; right: 0;">
+                                <i class="far fa-copy"></i>
+                            </button>
+                        </div>
+                    </li>
+                    <li class="mb-4">Run the database migrations:
+                        <div class="code-box" style="position: relative;">
+                            <pre><code id="migrate-command">php artisan migrate</code></pre>
+                            <button class="btn btn-sm btn-outline-warning copy-button"
+                                onclick="copyToClipboard('migrate-command')"
+                                style="position: absolute; top: 0; right: 0;">
+                                <i class="far fa-copy"></i>
+                            </button>
+                        </div>
+                    </li>
+                    <li class="mb-4">Start the development server:
+                        <div class="code-box" style="position: relative;">
+                            <pre><code id="serve-command">php artisan serve</code></pre>
+                            <button class="btn btn-sm btn-outline-warning copy-button"
+                                onclick="copyToClipboard('serve-command')"
+                                style="position: absolute; top: 0; right: 0;">
+                                <i class="far fa-copy"></i>
+                            </button>
+                        </div>
+                    </li>
+                    <li class="mb-4">The default port is 8000. If the port is already in use, you can specify a
+                        different port like
+                        this:
+                        <div class="code-box" style="position: relative;">
+                            <pre><code id="serve-port-command">php artisan serve --port=8080</code></pre>
+                            <button class="btn btn-sm btn-outline-warning copy-button"
+                                onclick="copyToClipboard('serve-port-command')"
+                                style="position: absolute; top: 0; right: 0;">
+                                <i class="far fa-copy"></i>
+                            </button>
+                        </div>
+                    </li>
+                </ol>
+                <p>Open your web browser and navigate to <a href="http://localhost:8000"
+                        target="_blank">http://localhost:8000</a> to access your Laravel application.</p>
+            </div>
+        </div>
+    </div>
+    <hr>
+    <div class="container mt-4">
+        <div class="card bg-dark text-white mb-4">
+            <div class="card-header">
+                <h2 class="mb-0">👀 Where to find me</h2>
+            </div>
+            <div class="card-body">
+                <p>Feel free to contact:</p>
+                <a href="https://riajul-islam-dev.github.io/" class="btn btn-success" target="_blank">
+                    <i class="fas fa-globe"></i> Website
+                </a>
+                <a href="tel:+8801722787007" class="btn btn-primary" target="_blank">
+                    <i class="fas fa-phone"></i> Phone
+                </a>
+                <a href="mailto:riajul.islam.dev@gmail.com" class="btn btn-danger" target="_blank">
+                    <i class="far fa-envelope"></i> Email
+                </a>
+                <a href="https://www.linkedin.com/in/riajul-islam-dev" class="btn btn-primary" target="_blank">
+                    <i class="fab fa-linkedin"></i> LinkedIn
+                </a>
+                <a href="https://github.com/Riajul-Islam-Dev" class="btn btn-secondary" target="_blank">
+                    <i class="fab fa-github"></i> GitHub
+                </a>
+                <a href="https://join.skype.com/invite/y4awZfHii9yl" class="btn btn-info" target="_blank">
+                    <i class="fab fa-skype"></i> Skype
+                </a>
+                <a href="https://www.facebook.com/ritewu2014" class="btn btn-primary" target="_blank">
+                    <i class="fab fa-facebook"></i> Facebook
+                </a>
+            </div>
+
+        </div>
+    </div>
+
+    <!-- Bootstrap and JavaScript library links -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <!-- FontAwesome JS for the copy icon -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/js/all.min.js"></script>
+    <script>
+        function copyToClipboard(elementId) {
+            var copyText = document.getElementById(elementId);
+            var textArea = document.createElement("textarea");
+            textArea.value = copyText.textContent;
+            document.body.appendChild(textArea);
+            textArea.select();
+            document.execCommand('copy');
+            document.body.removeChild(textArea);
+            alert("Copied to clipboard: " + copyText.textContent);
+        }
+    </script>
+</body>
+
+</html>
