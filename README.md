@@ -52,25 +52,38 @@ Follow these steps to clone and set up a Laravel project from this repository:
    php artisan migrate
    ```
 
-10. Start the development server:
+10. If you encounter an error "Illuminate\Database\QueryException SQLSTATE[42000]: Syntax error or access violation: 1071 Specified key was too long; max key length is 1000 bytes", You may configure the default string length by calling the Schema::defaultStringLength method within the boot method of your App\Providers\AppServiceProvider class:
+    ```bash
+    use Illuminate\Support\Facades\Schema;
+
+      /**
+       * Bootstrap any application services.
+       */
+      public function boot(): void
+      {
+          Schema::defaultStringLength(191);
+      }
+    ```
+    
+11. Start the development server:
     ```bash
     php artisan serve
     ```
 
-11. The default port is 8000. If the port is already in use, you can specify a different port like this:
+12. The default port is 8000. If the port is already in use, you can specify a different port like this:
     ```bash
     php artisan serve --port=8080
     ```
 
-12. Open your web browser and navigate to [http://localhost:8000](http://localhost:8000) to access your Laravel application.
+13. Open your web browser and navigate to [http://localhost:8000](http://localhost:8000) to access your Laravel application.
 <br><br><br>
 ## 👀 Where to find me
-[![Website](https://img.shields.io/badge/Website-riajul--islam--dev.github.io-2ea44f?style=flat-square&logo=github)](https://riajul-islam-dev.github.io/)
-[![Phone](https://img.shields.io/badge/📞_Phone-%2B8801722787007-00cc00?style=flat-square&amp;logo=phone)](tel:+8801722787007)
-[![E-mail](https://img.shields.io/badge/Email-riajul.islam.dev@gmail.com-00cc00?style=flat-square&amp;logo=gmail)](mailto:riajul.islam.dev@gmail.com)
-[![LinkedIn](https://img.shields.io/badge/LinkedIn-riajul--islam--dev-2867B2?style=flat-square&logo=linkedin&logoColor=00AFF0)](https://www.linkedin.com/in/riajul-islam-dev)
-[![GitHub](https://img.shields.io/badge/GitHub-riajul--islam--dev-00cc00?style=flat-square&logo=github)](https://github.com/Riajul-Islam-Dev)
-[![Skype](https://img.shields.io/badge/Skype-riajul--islam--dev-00a2ed?style=flat-square&logo=skype)](https://join.skype.com/invite/y4awZfHii9yl)
-[![Facebook](https://img.shields.io/badge/Facebook-ritewu2014-1877f2?style=flat-square&logo=facebook)](https://www.facebook.com/ritewu2014)
+[![Website](https://img.shields.io/badge/Website-riajul--islam--dev.github.io-2ea44f?style=flat&logo=github)](https://riajul-islam-dev.github.io/)
+[![Phone](https://img.shields.io/badge/📞_Phone-%2B8801722787007-00cc00?style=flat&amp;logo=phone)](tel:+8801722787007)
+[![E-mail](https://img.shields.io/badge/Email-riajul.islam.dev@gmail.com-00cc00?style=flat&amp;logo=gmail)](mailto:riajul.islam.dev@gmail.com)
+[![LinkedIn](https://img.shields.io/badge/LinkedIn-riajul--islam--dev-2867B2?style=flat&logo=linkedin&logoColor=00AFF0)](https://www.linkedin.com/in/riajul-islam-dev)
+[![GitHub](https://img.shields.io/badge/GitHub-riajul--islam--dev-00cc00?style=flat&logo=github)](https://github.com/Riajul-Islam-Dev)
+[![Skype](https://img.shields.io/badge/Skype-riajul--islam--dev-00a2ed?style=flat&logo=skype)](https://join.skype.com/invite/y4awZfHii9yl)
+[![Facebook](https://img.shields.io/badge/Facebook-ritewu2014-1877f2?style=flat&logo=facebook)](https://www.facebook.com/ritewu2014)
 
 <p align="center">Feel free to contact 💙<p/>
