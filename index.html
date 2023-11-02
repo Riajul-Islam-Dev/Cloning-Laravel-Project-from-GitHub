@@ -41,19 +41,16 @@
         @media (max-width: 768px) {
             .card {
                 margin: 10px;
-                /* Reduce margin for smaller screens */
             }
 
             .card-header,
             .card-body,
             .card-footer {
                 padding: 10px;
-                /* Adjust padding for smaller screens */
             }
 
             .code-box {
                 font-size: 12px;
-                /* Decrease font size for code boxes */
             }
         }
 
@@ -61,7 +58,6 @@
         @media (min-width: 769px) {
             .container {
                 max-width: 1200px;
-                /* Limit the maximum width of the content */
             }
         }
     </style>
@@ -107,8 +103,7 @@
                         </div>
                     </li>
                     <li class="mb-4">If you encounter any errors, they may be due to obsolete or deprecated packages.
-                        Run this
-                        command to update the dependencies:
+                        Run this command to update the dependencies:
                         <div class="code-box" style="position: relative;">
                             <pre><code id="composer-update-command">composer update</code></pre>
                             <button class="btn btn-sm btn-outline-warning copy-button"
@@ -139,8 +134,7 @@
                         </div>
                     </li>
                     <li class="mb-4">Open your .env file and adjust the database name (DB_DATABASE), username
-                        (DB_USERNAME), and
-                        password (DB_PASSWORD) to match your database configuration:
+                        (DB_USERNAME), and password (DB_PASSWORD) to match your database configuration:
                         <div class="code-box" style="position: relative;">
                             <pre><code id="env-configuration">DB_CONNECTION=#####<br>DB_HOST=###.#.#.#<br>DB_PORT=####<br>DB_DATABASE=YourDatabaseName<br>DB_USERNAME=YourUsername<br>DB_PASSWORD=YourPassword</code></pre>
                             <button class="btn btn-sm btn-outline-warning copy-button"
@@ -170,6 +164,19 @@
                             </button>
                         </div>
                     </li>
+                    <li class="mb-4">If you encounter an error "Illuminate\Database\QueryException SQLSTATE[42000]:
+                        Syntax error or access violation: 1071 Specified key was too long; max key length is 1000
+                        bytes", You may configure the default string length by calling the Schema::defaultStringLength
+                        method within the boot method of your App\Providers\AppServiceProvider class:
+                        <div class="code-box" style="position: relative;">
+                            <pre><code id="schema-configuration">use Illuminate\Support\Facades\Schema;<br><br>/**<br>* Bootstrap any application services.<br>*/<br>public function boot(): void<br>{<br>   Schema::defaultStringLength(191);<br>}</code></pre>
+                            <button class="btn btn-sm btn-outline-warning copy-button"
+                                onclick="copyToClipboard('schema-configuration')"
+                                style="position: absolute; top: 0; right: 0;">
+                                <i class="far fa-copy"></i>
+                            </button>
+                        </div>
+                    </li>
                     <li class="mb-4">Start the development server:
                         <div class="code-box" style="position: relative;">
                             <pre><code id="serve-command">php artisan serve</code></pre>
@@ -181,8 +188,7 @@
                         </div>
                     </li>
                     <li class="mb-4">The default port is 8000. If the port is already in use, you can specify a
-                        different port like
-                        this:
+                        different port like this:
                         <div class="code-box" style="position: relative;">
                             <pre><code id="serve-port-command">php artisan serve --port=8080</code></pre>
                             <button class="btn btn-sm btn-outline-warning copy-button"
@@ -192,9 +198,11 @@
                             </button>
                         </div>
                     </li>
+                    <li class="mb-4">
+                        <p>Open your web browser and navigate to <a href="http://localhost:8000"
+                                target="_blank">http://localhost:8000</a> to access your Laravel application.</p>
+                    </li>
                 </ol>
-                <p>Open your web browser and navigate to <a href="http://localhost:8000"
-                        target="_blank">http://localhost:8000</a> to access your Laravel application.</p>
             </div>
         </div>
     </div>
