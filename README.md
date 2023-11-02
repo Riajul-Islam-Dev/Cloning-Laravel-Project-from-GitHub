@@ -61,7 +61,7 @@ Follow these steps to clone and set up a Laravel project from this repository:
        */
       public function boot(): void
       {
-          Schema::defaultStringLength(191);
+         Schema::defaultStringLength(191);
       }
     ```
     
