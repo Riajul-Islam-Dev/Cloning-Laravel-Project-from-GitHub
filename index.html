@@ -76,10 +76,10 @@
     <div class="container mt-4">
         <div class="card bg-dark text-white">
             <div class="card-header">
-                <h1 class="mb-0">Cloning Laravel Project from GitHub</h1>
+                <h1 class="mb-0">How to Clone and Set Up a Laravel Project from GitHub</h1>
             </div>
             <div class="card-body">
-                <p>Follow these steps to clone and set up a Laravel project from this repository:</p>
+                <h5>Follow these steps to clone and set up a Laravel project from this repository:</h5>
                 <ol class="pl-3">
                     <li>Clone the repository:
                         <div class="code-box">
@@ -128,7 +128,7 @@
                     </li>
                     <li>Edit database configuration in .env:
                         <div class="code-box">
-                            <code id="env-configuration">DB_DATABASE=YourDatabaseName<br>DB_USERNAME=YourUsername<br>DB_PASSWORD=YourPassword</code>
+                            <code id="env-configuration">DB_CONNECTION=mysql<br>DB_HOST=127.0.0.1<br>DB_PORT=3306<br>DB_DATABASE=YourDatabaseName<br>DB_USERNAME=YourUsername<br>DB_PASSWORD=YourPassword</code>
                             <button class="btn btn-sm btn-outline-warning copy-button"
                                 onclick="copyToClipboard('env-configuration')">
                                 <i class="far fa-copy"></i>
@@ -162,7 +162,45 @@
                             </button>
                         </div>
                     </li>
+                    <li>If the port is in use, specify another:
+                        <div class="code-box">
+                            <code id="serve-port-command">php artisan serve --port=8080</code>
+                            <button class="btn btn-sm btn-outline-warning copy-button"
+                                onclick="copyToClipboard('serve-port-command')">
+                                <i class="far fa-copy"></i>
+                            </button>
+                        </div>
+                    </li>
+                    <li>Access the application at:
+                        <div class="code-box">
+                            <code id="access-url">http://localhost:8000</code>
+                            <button class="btn btn-sm btn-outline-warning copy-button"
+                                onclick="copyToClipboard('access-url')">
+                                <i class="far fa-copy"></i>
+                            </button>
+                        </div>
+                    </li>
                 </ol>
+                <h6>Common Error:</h6>
+                <p>If you encounter the error:</p>
+                <div class="code-box">
+                    <code>Illuminate\Database\QueryException SQLSTATE[42000]: Syntax error or access violation: 1071 Specified key was too long; max key length is 1000 bytes</code>
+                    <button class="btn btn-sm btn-outline-warning copy-button"
+                        onclick="copyToClipboard('common-error')">
+                        <i class="far fa-copy"></i>
+                    </button>
+                </div>
+                <p>Add the following code to the <code>boot</code> method in <code>App\Providers\AppServiceProvider</code>:</p>
+                <div class="code-box">
+                    <code>use Illuminate\Support\Facades\Schema;</code><br>
+                    <code>public function boot(): void {</code><br>
+                    <code>    Schema::defaultStringLength(191);</code><br>
+                    <code>}</code>
+                    <button class="btn btn-sm btn-outline-warning copy-button"
+                        onclick="copyToClipboard('fix-error')">
+                        <i class="far fa-copy"></i>
+                    </button>
+                </div>
             </div>
         </div>
     </div>
@@ -173,7 +211,7 @@
                 <h2>👀 Contact Me</h2>
             </div>
             <div class="card-body">
-                <a href="https://riajul-islam-dev.github.io/" class="btn btn-sm btn-success" target="_blank">
+                <a href="https://riajul.islam.softkit.io/" class="btn btn-sm btn-success" target="_blank">
                     <i class="fas fa-globe"></i> Website
                 </a>
                 <a href="mailto:riajul.islam.dev@gmail.com" class="btn btn-sm btn-danger" target="_blank">
@@ -184,6 +222,12 @@
                 </a>
                 <a href="https://www.linkedin.com/in/riajul-islam-dev" class="btn btn-sm btn-primary" target="_blank">
                     <i class="fab fa-linkedin"></i> LinkedIn
+                </a>
+                <a href="https://join.skype.com/invite/y4awZfHii9yl" class="btn btn-sm btn-info" target="_blank">
+                    <i class="fab fa-skype"></i> Skype
+                </a>
+                <a href="https://www.facebook.com/RiajulIslamDEV" class="btn btn-sm btn-primary" target="_blank">
+                    <i class="fab fa-facebook"></i> Facebook
                 </a>
             </div>
         </div>
