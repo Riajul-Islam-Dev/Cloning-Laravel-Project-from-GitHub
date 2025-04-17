@@ -1,255 +1,462 @@
 <!DOCTYPE html>
 <html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Laravel Project Setup Guide</title>
     <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-    <!-- FontAwesome CSS for the copy icon -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <!-- FontAwesome CSS for icons -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
     <style>
-        body {
-            background-color: #010409;
-            color: #fff;
-            font-family: 'Arial', sans-serif;
+      :root {
+        --bg-dark: #0d1117;
+        --bg-darker: #010409;
+        --bg-card: #161b22;
+        --text-primary: #f8f9fa;
+        --text-secondary: #adb5bd;
+        --accent-color: #58a6ff;
+        --border-color: #30363d;
+        --success-color: #3fb950;
+        --warning-color: #f0883e;
+        --danger-color: #f85149;
+      }
+
+      body {
+        background-color: var(--bg-darker);
+        color: var(--text-primary);
+        font-family: "Segoe UI", system-ui, -apple-system, sans-serif;
+        transition: all 0.3s ease;
+        padding-bottom: 60px;
+      }
+
+      .card {
+        border: 1px solid var(--border-color);
+        border-radius: 8px;
+        overflow: hidden;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+        margin-bottom: 2rem;
+        background-color: var(--bg-dark);
+      }
+
+      .card-header {
+        background-color: var(--bg-card);
+        border-bottom: 1px solid var(--border-color);
+        padding: 1.25rem;
+      }
+
+      .card-body {
+        background-color: var(--bg-dark);
+        padding: 1.5rem;
+      }
+
+      .code-box {
+        background-color: var(--bg-card);
+        border: 1px solid var(--border-color);
+        border-radius: 6px;
+        padding: 16px;
+        font-size: 14px;
+        margin-bottom: 20px;
+        position: relative;
+        font-family: "Consolas", "Monaco", "Courier New", monospace;
+        overflow-x: auto;
+      }
+
+      .code-box code {
+        color: var(--text-primary);
+        display: block;
+        white-space: pre-wrap;
+      }
+
+      .copy-button {
+        position: absolute;
+        top: 8px;
+        right: 8px;
+        background-color: transparent;
+        border: 1px solid var(--border-color);
+        color: var(--text-secondary);
+        border-radius: 4px;
+        padding: 4px 8px;
+        font-size: 12px;
+        transition: all 0.2s ease;
+      }
+
+      .copy-button:hover {
+        background-color: rgba(255, 255, 255, 0.1);
+        color: var(--text-primary);
+      }
+
+      .copy-button.copied {
+        background-color: var(--success-color);
+        color: white;
+        border-color: var(--success-color);
+      }
+
+      h1,
+      h2 {
+        font-weight: 600;
+        color: var(--text-primary);
+      }
+
+      h5,
+      h6 {
+        color: var(--text-secondary);
+        font-weight: 500;
+      }
+
+      ol li {
+        margin-bottom: 1.5rem;
+        line-height: 1.6;
+        color: var(--text-primary); /* Ensure list items are clearly visible */
+      }
+
+      .step-label {
+        font-weight: 500;
+        color: var(--accent-color); /* Use accent color for better visibility */
+        display: block;
+        margin-bottom: 0.5rem;
+      }
+
+      .contact-btn {
+        margin: 0.5rem 0.5rem 0.5rem 0;
+        transition: transform 0.2s;
+      }
+
+      .contact-btn:hover {
+        transform: translateY(-2px);
+      }
+
+      .theme-toggle {
+        position: fixed;
+        bottom: 20px;
+        right: 20px;
+        z-index: 1000;
+        background-color: var(--accent-color);
+        border: none;
+        border-radius: 50%;
+        width: 50px;
+        height: 50px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        cursor: pointer;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+        transition: all 0.3s ease;
+      }
+
+      .theme-toggle:hover {
+        transform: scale(1.1);
+      }
+
+      .theme-toggle i {
+        font-size: 1.2rem;
+        color: white;
+      }
+
+      /* Light mode styles */
+      body.light-mode {
+        --bg-darker: #f8f9fa;
+        --bg-dark: #ffffff;
+        --bg-card: #f1f3f5;
+        --text-primary: #212529;
+        --text-secondary: #495057;
+        --border-color: #dee2e6;
+      }
+
+      @media (max-width: 768px) {
+        .card {
+          margin: 1rem 0.5rem;
         }
 
-        .code-box {
-            background-color: #161B22;
-            border: 1px solid #ccc;
-            border-radius: 4px;
-            padding: 12px;
-            font-size: 14px;
-            margin-bottom: 16px;
-            position: relative;
+        .contact-btn {
+          margin: 0.3rem;
+          padding: 0.375rem 0.5rem;
         }
-
-        .code-box code {
-            color: #f1f1f1;
-        }
-
-        .copy-button {
-            cursor: pointer;
-            position: absolute;
-            top: 8px;
-            right: 8px;
-        }
-
-        .card-header,
-        .card-body,
-        .card-footer {
-            background-color: #0D1117;
-        }
-
-        .dark-mode-toggle {
-            position: fixed;
-            bottom: 20px;
-            right: 20px;
-            z-index: 1000;
-            background-color: #fff;
-            border: none;
-            border-radius: 50%;
-            width: 50px;
-            height: 50px;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            cursor: pointer;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
-        }
-
-        @media (max-width: 768px) {
-            .card {
-                margin: 10px;
-            }
-
-            .code-box {
-                font-size: 12px;
-            }
-        }
+      }
     </style>
-</head>
+  </head>
 
-<body>
+  <body>
     <div class="container mt-4">
-        <div class="card bg-dark text-white">
-            <div class="card-header">
-                <h1 class="mb-0">How to Clone and Set Up a Laravel Project from GitHub</h1>
-            </div>
-            <div class="card-body">
-                <h5>Follow these steps to clone and set up a Laravel project from this repository:</h5>
-                <ol class="pl-3">
-                    <li>Clone the repository:
-                        <div class="code-box">
-                            <code id="clone-command">git clone &lt;GitHub Repository URL&gt;</code>
-                            <button class="btn btn-sm btn-outline-warning copy-button"
-                                onclick="copyToClipboard('clone-command')">
-                                <i class="far fa-copy"></i>
-                            </button>
-                        </div>
-                    </li>
-                    <li>Navigate to the cloned repository:
-                        <div class="code-box">
-                            <code id="navigate-command">cd &lt;Cloned project name&gt;</code>
-                            <button class="btn btn-sm btn-outline-warning copy-button"
-                                onclick="copyToClipboard('navigate-command')">
-                                <i class="far fa-copy"></i>
-                            </button>
-                        </div>
-                    </li>
-                    <li>Install dependencies:
-                        <div class="code-box">
-                            <code id="composer-install-command">composer install</code>
-                            <button class="btn btn-sm btn-outline-warning copy-button"
-                                onclick="copyToClipboard('composer-install-command')">
-                                <i class="far fa-copy"></i>
-                            </button>
-                        </div>
-                    </li>
-                    <li>Update dependencies if needed:
-                        <div class="code-box">
-                            <code id="composer-update-command">composer update</code>
-                            <button class="btn btn-sm btn-outline-warning copy-button"
-                                onclick="copyToClipboard('composer-update-command')">
-                                <i class="far fa-copy"></i>
-                            </button>
-                        </div>
-                    </li>
-                    <li>Copy the environment file:
-                        <div class="code-box">
-                            <code id="copy-env-command">cp .env.example .env</code>
-                            <button class="btn btn-sm btn-outline-warning copy-button"
-                                onclick="copyToClipboard('copy-env-command')">
-                                <i class="far fa-copy"></i>
-                            </button>
-                        </div>
-                    </li>
-                    <li>Edit database configuration in .env:
-                        <div class="code-box">
-                            <code id="env-configuration">DB_CONNECTION=mysql<br>DB_HOST=127.0.0.1<br>DB_PORT=3306<br>DB_DATABASE=YourDatabaseName<br>DB_USERNAME=YourUsername<br>DB_PASSWORD=YourPassword</code>
-                            <button class="btn btn-sm btn-outline-warning copy-button"
-                                onclick="copyToClipboard('env-configuration')">
-                                <i class="far fa-copy"></i>
-                            </button>
-                        </div>
-                    </li>
-                    <li>Generate application key:
-                        <div class="code-box">
-                            <code id="key-generation-command">php artisan key:generate</code>
-                            <button class="btn btn-sm btn-outline-warning copy-button"
-                                onclick="copyToClipboard('key-generation-command')">
-                                <i class="far fa-copy"></i>
-                            </button>
-                        </div>
-                    </li>
-                    <li>Run database migrations:
-                        <div class="code-box">
-                            <code id="migrate-command">php artisan migrate</code>
-                            <button class="btn btn-sm btn-outline-warning copy-button"
-                                onclick="copyToClipboard('migrate-command')">
-                                <i class="far fa-copy"></i>
-                            </button>
-                        </div>
-                    </li>
-                    <li>Start the server:
-                        <div class="code-box">
-                            <code id="serve-command">php artisan serve</code>
-                            <button class="btn btn-sm btn-outline-warning copy-button"
-                                onclick="copyToClipboard('serve-command')">
-                                <i class="far fa-copy"></i>
-                            </button>
-                        </div>
-                    </li>
-                    <li>If the port is in use, specify another:
-                        <div class="code-box">
-                            <code id="serve-port-command">php artisan serve --port=8080</code>
-                            <button class="btn btn-sm btn-outline-warning copy-button"
-                                onclick="copyToClipboard('serve-port-command')">
-                                <i class="far fa-copy"></i>
-                            </button>
-                        </div>
-                    </li>
-                    <li>Access the application at:
-                        <div class="code-box">
-                            <code id="access-url">http://localhost:8000</code>
-                            <button class="btn btn-sm btn-outline-warning copy-button"
-                                onclick="copyToClipboard('access-url')">
-                                <i class="far fa-copy"></i>
-                            </button>
-                        </div>
-                    </li>
-                </ol>
-                <h6>Common Error:</h6>
-                <p>If you encounter the error:</p>
-                <div class="code-box">
-                    <code>Illuminate\Database\QueryException SQLSTATE[42000]: Syntax error or access violation: 1071 Specified key was too long; max key length is 1000 bytes</code>
-                    <button class="btn btn-sm btn-outline-warning copy-button"
-                        onclick="copyToClipboard('common-error')">
-                        <i class="far fa-copy"></i>
-                    </button>
-                </div>
-                <p>Add the following code to the <code>boot</code> method in <code>App\Providers\AppServiceProvider</code>:</p>
-                <div class="code-box">
-                    <code>use Illuminate\Support\Facades\Schema;</code><br>
-                    <code>public function boot(): void {</code><br>
-                    <code>    Schema::defaultStringLength(191);</code><br>
-                    <code>}</code>
-                    <button class="btn btn-sm btn-outline-warning copy-button"
-                        onclick="copyToClipboard('fix-error')">
-                        <i class="far fa-copy"></i>
-                    </button>
-                </div>
-            </div>
+      <div class="card">
+        <div class="card-header">
+          <h1 class="mb-0">
+            <i class="fab fa-laravel me-2" style="color: #ff2d20"></i>
+            Laravel Project Setup Guide
+          </h1>
         </div>
+        <div class="card-body">
+          <h5 class="mb-4">
+            Follow these steps to clone and set up a Laravel project from
+            GitHub:
+          </h5>
+          <ol class="ps-3">
+            <li>
+              Clone the repository:
+              <div class="code-box">
+                <code id="clone-command"
+                  >git clone &lt;GitHub Repository URL&gt;</code
+                >
+                <button class="copy-button" data-target="clone-command">
+                  <i class="far fa-copy me-1"></i> Copy
+                </button>
+              </div>
+            </li>
+            <li>
+              Navigate to the cloned repository:
+              <div class="code-box">
+                <code id="navigate-command"
+                  >cd &lt;Cloned project name&gt;</code
+                >
+                <button class="copy-button" data-target="navigate-command">
+                  <i class="far fa-copy me-1"></i> Copy
+                </button>
+              </div>
+            </li>
+            <li>
+              Install dependencies:
+              <div class="code-box">
+                <code id="composer-install-command">composer install</code>
+                <button
+                  class="copy-button"
+                  data-target="composer-install-command"
+                >
+                  <i class="far fa-copy me-1"></i> Copy
+                </button>
+              </div>
+            </li>
+            <li>
+              Update dependencies if needed:
+              <div class="code-box">
+                <code id="composer-update-command">composer update</code>
+                <button
+                  class="copy-button"
+                  data-target="composer-update-command"
+                >
+                  <i class="far fa-copy me-1"></i> Copy
+                </button>
+              </div>
+            </li>
+            <li>
+              Copy the environment file:
+              <div class="code-box">
+                <code id="copy-env-command">cp .env.example .env</code>
+                <button class="copy-button" data-target="copy-env-command">
+                  <i class="far fa-copy me-1"></i> Copy
+                </button>
+              </div>
+            </li>
+            <li>
+              Edit database configuration in .env:
+              <div class="code-box">
+                <code id="env-configuration"
+                  >DB_CONNECTION=mysql DB_HOST=127.0.0.1 DB_PORT=3306
+                  DB_DATABASE=YourDatabaseName DB_USERNAME=YourUsername
+                  DB_PASSWORD=YourPassword</code
+                >
+                <button class="copy-button" data-target="env-configuration">
+                  <i class="far fa-copy me-1"></i> Copy
+                </button>
+              </div>
+            </li>
+            <li>
+              Generate application key:
+              <div class="code-box">
+                <code id="key-generation-command"
+                  >php artisan key:generate</code
+                >
+                <button
+                  class="copy-button"
+                  data-target="key-generation-command"
+                >
+                  <i class="far fa-copy me-1"></i> Copy
+                </button>
+              </div>
+            </li>
+            <li>
+              Run database migrations:
+              <div class="code-box">
+                <code id="migrate-command">php artisan migrate</code>
+                <button class="copy-button" data-target="migrate-command">
+                  <i class="far fa-copy me-1"></i> Copy
+                </button>
+              </div>
+            </li>
+            <li>
+              Start the server:
+              <div class="code-box">
+                <code id="serve-command">php artisan serve</code>
+                <button class="copy-button" data-target="serve-command">
+                  <i class="far fa-copy me-1"></i> Copy
+                </button>
+              </div>
+            </li>
+            <li>
+              If the port is in use, specify another:
+              <div class="code-box">
+                <code id="serve-port-command"
+                  >php artisan serve --port=8080</code
+                >
+                <button class="copy-button" data-target="serve-port-command">
+                  <i class="far fa-copy me-1"></i> Copy
+                </button>
+              </div>
+            </li>
+            <li>
+              Access the application at:
+              <div class="code-box">
+                <code id="access-url">http://localhost:8000</code>
+                <button class="copy-button" data-target="access-url">
+                  <i class="far fa-copy me-1"></i> Copy
+                </button>
+              </div>
+            </li>
+          </ol>
+
+          <div class="alert alert-warning mt-4">
+            <h6 class="mb-2">
+              <i class="fas fa-exclamation-triangle me-2"></i>Common Error:
+            </h6>
+            <p class="mb-2">If you encounter the error:</p>
+            <div class="code-box">
+              <code id="common-error"
+                >Illuminate\Database\QueryException SQLSTATE[42000]: Syntax
+                error or access violation: 1071 Specified key was too long; max
+                key length is 1000 bytes</code
+              >
+              <button class="copy-button" data-target="common-error">
+                <i class="far fa-copy me-1"></i> Copy
+              </button>
+            </div>
+            <p class="mb-2">
+              Add the following code to the <code>boot</code> method in
+              <code>App\Providers\AppServiceProvider</code>:
+            </p>
+            <div class="code-box">
+              <code id="fix-error"
+                >use Illuminate\Support\Facades\Schema; public function boot():
+                void { Schema::defaultStringLength(191); }</code
+              >
+              <button class="copy-button" data-target="fix-error">
+                <i class="far fa-copy me-1"></i> Copy
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
 
-    <div class="container mt-4">
-        <div class="card bg-dark text-white">
-            <div class="card-header">
-                <h2>👀 Contact Me</h2>
-            </div>
-            <div class="card-body">
-                <a href="https://riajul.islam.softkit.io/" class="btn btn-sm btn-success" target="_blank">
-                    <i class="fas fa-globe"></i> Website
-                </a>
-                <a href="mailto:riajul.islam.dev@gmail.com" class="btn btn-sm btn-danger" target="_blank">
-                    <i class="far fa-envelope"></i> Email
-                </a>
-                <a href="https://github.com/Riajul-Islam-Dev" class="btn btn-sm btn-secondary" target="_blank">
-                    <i class="fab fa-github"></i> GitHub
-                </a>
-                <a href="https://www.linkedin.com/in/riajul-islam-dev" class="btn btn-sm btn-primary" target="_blank">
-                    <i class="fab fa-linkedin"></i> LinkedIn
-                </a>
-                <a href="https://join.skype.com/invite/y4awZfHii9yl" class="btn btn-sm btn-info" target="_blank">
-                    <i class="fab fa-skype"></i> Skype
-                </a>
-                <a href="https://www.facebook.com/RiajulIslamDEV" class="btn btn-sm btn-primary" target="_blank">
-                    <i class="fab fa-facebook"></i> Facebook
-                </a>
-            </div>
+    <div class="container">
+      <div class="card">
+        <div class="card-header">
+          <h2 class="mb-0">
+            <i class="fas fa-address-card me-2"></i> Contact Me
+          </h2>
         </div>
+        <div class="card-body">
+          <div class="d-flex flex-wrap">
+            <a
+              href="https://riajul.islam.softkit.io/"
+              class="btn btn-success contact-btn"
+              target="_blank"
+            >
+              <i class="fas fa-globe me-1"></i> Website
+            </a>
+            <a
+              href="mailto:riajul.islam.dev@gmail.com"
+              class="btn btn-danger contact-btn"
+              target="_blank"
+            >
+              <i class="far fa-envelope me-1"></i> Email
+            </a>
+            <a
+              href="https://github.com/Riajul-Islam-Dev"
+              class="btn btn-dark contact-btn"
+              target="_blank"
+            >
+              <i class="fab fa-github me-1"></i> GitHub
+            </a>
+            <a
+              href="https://www.linkedin.com/in/riajul-islam-dev"
+              class="btn btn-primary contact-btn"
+              target="_blank"
+            >
+              <i class="fab fa-linkedin me-1"></i> LinkedIn
+            </a>
+            <a
+              href="https://join.skype.com/invite/y4awZfHii9yl"
+              class="btn btn-info contact-btn"
+              target="_blank"
+            >
+              <i class="fab fa-skype me-1"></i> Skype
+            </a>
+            <a
+              href="https://www.facebook.com/RiajulIslamDEV"
+              class="btn btn-primary contact-btn"
+              target="_blank"
+            >
+              <i class="fab fa-facebook me-1"></i> Facebook
+            </a>
+          </div>
+        </div>
+      </div>
     </div>
 
-    <button class="dark-mode-toggle" id="darkModeToggle">
-        <i class="fas fa-moon"></i>
+    <button class="theme-toggle" id="themeToggle">
+      <i class="fas fa-moon"></i>
     </button>
 
     <!-- JavaScript -->
     <script>
-        function copyToClipboard(elementId) {
-            const copyText = document.getElementById(elementId).textContent;
-            navigator.clipboard.writeText(copyText).then(() => {
-                alert(`Copied: ${copyText}`);
-            });
-        }
+      // Copy to clipboard functionality
+      document.querySelectorAll(".copy-button").forEach((button) => {
+        button.addEventListener("click", function () {
+          const targetId = this.getAttribute("data-target");
+          const copyText = document.getElementById(targetId).textContent;
 
-        document.getElementById('darkModeToggle').addEventListener('click', () => {
-            document.body.classList.toggle('dark-mode');
+          navigator.clipboard.writeText(copyText).then(() => {
+            // Visual feedback
+            this.classList.add("copied");
+            this.innerHTML = '<i class="fas fa-check me-1"></i> Copied!';
+
+            // Reset after 2 seconds
+            setTimeout(() => {
+              this.classList.remove("copied");
+              this.innerHTML = '<i class="far fa-copy me-1"></i> Copy';
+            }, 2000);
+          });
         });
-    </script>
-</body>
+      });
 
+      // Theme toggle functionality
+      const themeToggle = document.getElementById("themeToggle");
+      const body = document.body;
+      const icon = themeToggle.querySelector("i");
+
+      // Check for saved theme preference
+      if (localStorage.getItem("theme") === "light") {
+        body.classList.add("light-mode");
+        icon.classList.replace("fa-moon", "fa-sun");
+      }
+
+      themeToggle.addEventListener("click", () => {
+        body.classList.toggle("light-mode");
+
+        // Toggle icon
+        if (body.classList.contains("light-mode")) {
+          icon.classList.replace("fa-moon", "fa-sun");
+          localStorage.setItem("theme", "light");
+        } else {
+          icon.classList.replace("fa-sun", "fa-moon");
+          localStorage.setItem("theme", "dark");
+        }
+      });
+    </script>
+  </body>
 </html>

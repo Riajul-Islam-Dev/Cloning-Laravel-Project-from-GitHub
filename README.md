@@ -1,67 +1,91 @@
-# How to Clone and Set Up a Laravel Project from GitHub
+# Laravel Project Setup Guide
 
-This guide provides step-by-step instructions to clone and configure a Laravel project from a GitHub repository.
+Follow these steps to clone and set up a Laravel project from GitHub:
 
-## Step 1: Clone the Repository
-Run the following command in your terminal or command prompt to clone the repository:
-```bash
-git clone <GitHub Repository URL>
-```
+1. **Clone the repository:**
 
-## Step 2: Navigate to the Project Directory
-Change your working directory to the cloned project folder:
-```bash
-cd <Cloned project name>
-```
+   ```bash
+   git clone <GitHub Repository URL>
+   ```
 
-## Step 3: Install Dependencies
-Install the required PHP packages using Composer:
-```bash
-composer install
-```
-If you encounter errors due to outdated packages, update the dependencies:
-```bash
-composer update
-```
+2. **Navigate to the cloned repository:**
 
-## Step 4: Configure the Environment File
-Copy the example environment file to create your own `.env` configuration file:
-```bash
-cp .env.example .env
-```
-If the `cp` command is unavailable (e.g., on Windows), use:
-```bash
-copy .env.example .env
-```
+   ```bash
+   cd <Cloned project name>
+   ```
 
-## Step 5: Update Environment Settings
-Open the `.env` file in a text editor and update the database configuration to match your setup:
-```
-DB_CONNECTION=mysql
-DB_HOST=127.0.0.1
-DB_PORT=3306
-DB_DATABASE=YourDatabaseName
-DB_USERNAME=YourUsername
-DB_PASSWORD=YourPassword
-```
+3. **Install dependencies:**
 
-## Step 6: Generate the Application Key
-Generate the application key required for the project:
-```bash
-php artisan key:generate
-```
+   ```bash
+   composer install
+   ```
 
-## Step 7: Run Database Migrations
-Execute the migrations to set up the database schema:
-```bash
-php artisan migrate
-```
+   If you encounter errors due to outdated packages, update the dependencies:
+
+   ```bash
+   composer update
+   ```
+
+4. **Copy the environment file:**
+
+   ```bash
+   cp .env.example .env
+   ```
+
+   If the `cp` command is unavailable (e.g., on Windows), use:
+
+   ```bash
+   copy .env.example .env
+   ```
+
+5. **Edit database configuration in .env:**
+
+   ```
+   DB_CONNECTION=mysql
+   DB_HOST=127.0.0.1
+   DB_PORT=3306
+   DB_DATABASE=YourDatabaseName
+   DB_USERNAME=YourUsername
+   DB_PASSWORD=YourPassword
+   ```
+
+6. **Generate application key:**
+
+   ```bash
+   php artisan key:generate
+   ```
+
+7. **Run database migrations:**
+
+   ```bash
+   php artisan migrate
+   ```
+
+8. **Start the server:**
+
+   ```bash
+   php artisan serve
+   ```
+
+   By default, the server runs on port `8000`. If the port is already in use, specify another:
+
+   ```bash
+   php artisan serve --port=8080
+   ```
+
+9. **Access the application at:**
+   [http://localhost:8000](http://localhost:8000)
+
 ### Common Error:
+
 If you encounter the error:
+
 ```
 Illuminate\Database\QueryException SQLSTATE[42000]: Syntax error or access violation: 1071 Specified key was too long; max key length is 1000 bytes
 ```
+
 Add the following code to the `boot` method in `App\Providers\AppServiceProvider`:
+
 ```php
 use Illuminate\Support\Facades\Schema;
 
@@ -74,23 +98,10 @@ public function boot(): void
 }
 ```
 
-## Step 8: Start the Development Server
-Start the Laravel development server:
-```bash
-php artisan serve
-```
-By default, the server runs on port `8000`. If the port is already in use, specify another port:
-```bash
-php artisan serve --port=8080
-```
-
-## Step 9: Access the Application
-Open your web browser and navigate to:
-[http://localhost:8000](http://localhost:8000)
-
 ---
 
 ## Contact Me
+
 If you have any questions or need assistance, feel free to reach out:
 
 [![Website](https://img.shields.io/badge/Website-riajul.islam.softkit.io-2ea44f?style=flat&logo=github)](https://riajul.islam.softkit.io/)
@@ -102,4 +113,3 @@ If you have any questions or need assistance, feel free to reach out:
 [![Facebook](https://img.shields.io/badge/Facebook-RiajulIslamDEV-1877f2?style=flat&logo=facebook)](https://www.facebook.com/RiajulIslamDEV)
 
 <p align="center">Feel free to connect! 💙</p>
-
